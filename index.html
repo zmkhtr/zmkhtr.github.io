@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bahasa Isyarat Nusantara</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="dist/build.js"></script> 
+    
+</head>
+<body>
+     <div class="header" id="header">
+        <img src="binus.png" alt="Italian Trulli"><a class="logo">Bahasa Isyarat Nusantara</a>
+   
+       
+      </div>
+
+  <!-- The Modal -->
+  <div id="launchModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="close-modal">&times;</span>
+        <h2>Bahasa Isyarat Nusantara</h2>
+      </div>
+      <div class="modal-body">
+        <p>ini adalah project menggunakan Tensorflow.js untuk membuat penerjemah Bahasa Isyarat menggunakan webcam</p>
+        <!-- <p>This project is an experiment that uses Tensorflow.js and your webcam to make Amazon Echo respond to sign language. It began with a simple question:</p> 
+        <p><b><em>"If voice is the future of computing what about those who cannot hear or speak?"</em></b></p> -->
+        <!-- <p>You can find the code for this demo on <a href="https://github.com/shekit/alexa-sign-language-translator" target="_blank">github</a> or watch a <a href="https://www.youtube.com/watch?v=kS53y6GWm0w" target="_blank">video</a> of it in action.</p> -->
+        <!-- <p style="font-size:12px;"><em>Note: This demo runs entirely in your browser without any data sent to any server</em></p> -->
+      </div>
+    </div>
+  </div>
+
+  <div id="status">
+    <p id="status-text">Status: Not Ready</p>
+  </div>
+
+  <div class="split-left">
+    
+      <video id="video" src='' muted autoplay playsinline></video>
+    
+    </div>
+  <div class="split-right">
+        <div class="centered">
+            <h1 id="text" class="intro-steps">Tambahkan Kata<br><span class="subtext">Tambahkan beberapa kata, setelah itu kita akan menambahkan datasetnya</h1>
+            <div id="training-list">
+              <div id="example-list"></div>
+              <div id="add">
+                <form id="add-word" autocomplete="off">
+                  <input type="text" id="new-word" placeholder="Tambahkan kata">
+                  <br/><br/>
+                  <label>
+                    <input type="checkbox" id="is-terminal-word">
+                    Apakah ini <b>Kata Akhiran</b>
+                  </label>
+                  <br/><br/>
+                  <input type="submit" class="button" value="Add Word">
+                  <p><b>Kata Akhiran</b> - Kata yang teradapat pada akhir kalimat atau pertanyaan</p>
+                  <p>Contoh : Jika kamu ingin bertanya "Siapa <b><em>disana</em></b>?" , <b><em>'disana'</em></b> adalah Kata akhiran</p>
+                </form>
+              </div>
+              <p id="count">Training: 2 words</p>
+              <div id="action-btn"></div>
+              <!-- <button id="action-btn" class="button" style="vertical-align:middle"><span>Selesai </span></button> -->
+            </div>
+            
+          </div>
+        </div>
+      <div id="loader"></div>
+      <h1>
+        <span id="answerText"></span>
+        <!-- <span id="interimText"></span> -->
+      </h1>
+  </div>
+</body>
+</html>
