@@ -13,24 +13,23 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } // Launch in kiosk mode
-// /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk --app=http://localhost:9966
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } //import library
 
 
-// Webcam Image size. Must be 227. 
+// Ukuran gambar webcame
 var IMAGE_SIZE = 227;
-// K value for KNN
+// K value untuk algoritma KNN
 var TOPK = 10;
 
 var predictionThreshold = 0.98;
 
-var words = ["Saya berkata : ", "Halo", "lain-lain"]
+var words = ["Saya berkata : ", "Halo", "lain-lain"];
 // var words = ["Saya berkata : ", "hello", "what is", "the weather", "the time",
-//"add","eggs","to the list","five","feet","in meters","tell me","a joke", "bye", "other"]
+//"add","eggs","to the list","five","feet","in meters","tell me","a joke", "bye", "lain-lain"]
 
 
 // words from above array which act as terminal words in a sentence
-var endWords = ["Halo"]
+var endWords = ["Halo"];
 
 var LaunchModal = function LaunchModal() {
   var _this = this;
@@ -121,7 +120,7 @@ var Main = function () {
         // console.log(words)
         // console.log(endWords)
       } else {
-        alert("Kata sudah ditambahkan atau tidak ada kata yang diinput !")
+        alert("Kata sudah ditambahkan atau tidak ada kata yang diinput !");
       }
 
       return;
@@ -163,35 +162,29 @@ var Main = function () {
 
           // if wake word has not been trained
           if (exampleCount[0] == 0) {
-            alert(
-                `Kamu belum menambahkan dataset untuk 'Saya berkata :' `
-                );
+            alert('Kamu belum menambahkan dataset untuk \'Saya berkata :\' ');
             return;
           }
 
-          // if the catchall phrase other hasnt been trained
+          // if the catchall phrase lain-lain hasnt been trained
           if (exampleCount[words.length - 1] == 0) {
-            alert(
-                `Kamu belum menambahkan dataset untuk 'lain-lain.'\n\nTambahkan foto kamu dalam posisi diam, \n\nIni untuk mencegah kekeliruan saat menerjemahkan bahasa isyarat`)
-             return;
+            alert('Kamu belum menambahkan dataset untuk \'lain-lain.\'\n\nTambahkan foto kamu dalam posisi diam, \n\nIni untuk mencegah kekeliruan saat menerjemahkan bahasa isyarat');
+            return;
           }
 
           // check if atleast one terminal word has been trained
           if (!_this3.areTerminalWordsTrained(exampleCount)) {
-            alert(
-                `Tambahkan dataset paling tidak pada 1 kata akhiran.\n\nKata akhiran digunakan untuk mengakhiri kalimat, kata akhiran kamu adalah : ${endWords}`
-                )
-                return;
+            alert('Tambahkan dataset paling tidak pada 1 kata akhiran.\n\nKata akhiran digunakan untuk mengakhiri kalimat, kata akhiran kamu adalah : ' + endWords);
+            return;
           }
 
           _this3.trainingListDiv.style.display = "none";
           _this3.textLine.classList.remove("intro-steps");
-          this.textLine.innerText = "Peragakan bahasa isyaratnya"
+          _this3.textLine.innerText = "Peragakan bahasa isyaratnya";
           _this3.startPredicting();
         } else {
-            alert(
-                `Kamu belum menambahkan dataset.\n\nKlik dan tahan "Add Example" button pada setiap kata sambil meperagakan bahasa isyarat yang mewakili kata tersebut didepan webcam.`
-                ) }
+          alert('Kamu belum menambahkan dataset.\n\nKlik dan tahan "Add Example" button pada setiap kata sambil meperagakan bahasa isyarat yang mewakili kata tersebut didepan webcam.');
+        }
       });
     }
   }, {
@@ -210,13 +203,13 @@ var Main = function () {
 
         // check if user has added atleast one terminal word
         if (words.length > 3 && endWords.length == 1) {
-            console.log('Belum ada kata akhiran yang di tambahkan')
-        alert(`Kamu belum menambahkan kata akhiran.\n\n Kata akhiran adalah kata yang akan terdapat pada akhir kalimat \n Contoh : Jika kamu ingin menanyakan "Siapa disana?" , 'disana' adalah kata akhiran. "lain-lain" bukan kata akhiran.`)
-        return;
+          console.log('Belum ada kata akhiran yang di tambahkan');
+          alert('Kamu belum menambahkan kata akhiran.\n\n Kata akhiran adalah kata yang akan terdapat pada akhir kalimat \n Contoh : Jika kamu ingin menanyakan "Siapa disana?" , \'disana\' adalah kata akhiran. "lain-lain" bukan kata akhiran.');
+          return;
         }
 
         if (words.length == 3 && endWords.length == 1) {
-            var proceed = confirm("Kamu belum menambahkan kata apapun.\n\nKamu hanya bisa menggunakan kata 'Saya berkata : , halo'")
+          var proceed = confirm("Kamu belum menambahkan kata apapun.\n\nKamu hanya bisa menggunakan kata 'Saya berkata : , halo'");
 
           if (!proceed) return;
         }
@@ -227,10 +220,8 @@ var Main = function () {
         _this4.createButtonList(true);
         _this4.addWordForm.innerHTML = '';
         var p = document.createElement('p');
-        p.innerText = `Klik dan tahan "Add Example" button pada setiap kata sambil meperagakan bahasa isyarat yang mewakili kata tersebut didepan webcam. Tambahkan paling tidak 30 dataset !
-
-      untuk lain-lain, Foto diri kamu dalam posisi diam(idle) dan tangan kebawah`
-       _this4.addWordForm.appendChild(p);
+        p.innerText = 'Klik dan tahan "Add Example" button pada setiap kata sambil meperagakan bahasa isyarat yang mewakili kata tersebut didepan webcam. Tambahkan paling tidak 30 dataset !\n\n      untuk lain-lain, Foto diri kamu dalam posisi diam(idle) dan tangan kebawah';
+        _this4.addWordForm.appendChild(p);
 
         _this4.loadKNN();
 
@@ -560,7 +551,7 @@ var TextToSpeech = function () {
       }
 
       if (word != 'Saya berkata : ' && this.currentPredictedWords.length == 0) {
-        console.log("first word should be Saya berkata : ");
+        console.log("Kata pertama harus 'Saya berkata :' ");
         console.log(word);
         return;
       }
@@ -573,7 +564,7 @@ var TextToSpeech = function () {
 
       if (this.currentPredictedWords.includes(word)) {
         // prevent word from being detected repeatedly in phrase
-        console.log("word already been detected in current phrase");
+        console.log("kata sudah ada pada kalimat tersebut");
         return;
       }
 
@@ -588,11 +579,11 @@ var TextToSpeech = function () {
           //if last word is one of end words start listening for transcribing
           console.log("this was the last word");
 
-        //   main.setStatusText("Status: Waiting for Response");
+          // main.setStatusText("Status: Waiting for Response")
 
-        console.log("clear para")
-        this.clearPara(true);
-          var stt = new SpeechToText();
+          console.log("clear para");
+          _this10.clearPara(true);
+          // let stt = new SpeechToText()
         }
       };
 
@@ -612,121 +603,113 @@ var TextToSpeech = function () {
   return TextToSpeech;
 }();
 
-// var SpeechToText = function () {
-//   function SpeechToText() {
-//     var _this11 = this;
-
-//     _classCallCheck(this, SpeechToText);
-
-//     this.interimTextLine = document.getElementById("interimText");
-//     this.textLine = document.getElementById("answerText");
-//     this.loader = document.getElementById("loader");
-//     this.finalTranscript = '';
-//     this.recognizing = false;
+// class SpeechToText{
+//   constructor(){
+//     this.interimTextLine = document.getElementById("interimText")
+//     this.textLine = document.getElementById("answerText")
+//     this.loader = document.getElementById("loader")
+//     this.finalTranscript = ''
+//     this.recognizing = false
 
 //     this.recognition = new webkitSpeechRecognition();
 
 //     this.recognition.continuous = true;
 //     this.recognition.interimResults = true;
 
-//     this.recognition.lang = 'en-US';
+//     this.recognition.lang = 'en-US'
 
-//     this.cutOffTime = 15000; // cut off speech to text after
+//     this.cutOffTime = 15000 // cut off speech to text after
 
-//     this.recognition.onstart = function () {
-//       _this11.recognizing = true;
-//       console.log("started recognizing");
-//       main.setStatusText("Status: Transcribing");
-//     };
+//     this.recognition.onstart = () => {
+//       this.recognizing = true;
+//       console.log("started recognizing")
+//       main.setStatusText("Status: Transcribing")
+//     }
 
-//     this.recognition.onerror = function (evt) {
-//       console.log(evt + " recogn error");
-//     };
+//     this.recognition.onerror = (evt) => {
+//       console.log(evt + " recogn error")
+//     }
 
-//     this.recognition.onend = function () {
-//       console.log("stopped recognizing");
-//       if (_this11.finalTranscript.length == 0) {
-//         _this11.type("No response detected");
+//     this.recognition.onend = () => {
+//       console.log("stopped recognizing")
+//       if(this.finalTranscript.length == 0){
+//         this.type("No response detected")
+
 //       }
-//       _this11.recognizing = false;
+//       this.recognizing = false;
 
-//       main.setStatusText("Status: Finished Transcribing");
+//       main.setStatusText("Status: Finished Transcribing")
 //       // restart prediction after a pause
-//       setTimeout(function () {
-//         main.startPredicting();
-//       }, 1000);
-//     };
+//       setTimeout(() => {
+//         main.startPredicting()
+//       }, 1000)
+//     }
 
-//     this.recognition.onresult = function (event) {
-//       var interim_transcript = '';
-//       if (typeof event.results == 'undefined') {
+//     this.recognition.onresult = (event) => {
+//       var interim_transcript = ''
+//       if(typeof(event.results) == 'undefined'){
 //         return;
 //       }
 
+
 //       for (var i = event.resultIndex; i < event.results.length; ++i) {
 //         if (event.results[i].isFinal) {
-//           _this11.finalTranscript += event.results[i][0].transcript;
+//           this.finalTranscript += event.results[i][0].transcript;
 //         } else {
 //           interim_transcript += event.results[i][0].transcript;
 //         }
 //       }
 
-//       _this11.interimType(interim_transcript);
-//       _this11.type(_this11.finalTranscript);
-//     };
 
-//     setTimeout(function () {
-//       _this11.startListening();
-//     }, 0);
+//       this.interimType(interim_transcript)
+//       this.type(this.finalTranscript)
+//     }
 
-//     setTimeout(function () {
-//       _this11.stopListening();
-//     }, this.cutOffTime);
+//     setTimeout(()=>{
+//       this.startListening();
+//     },0)
+
+
+//     setTimeout(()=>{
+//       this.stopListening()
+//     },this.cutOffTime)
 //   }
 
-//   _createClass(SpeechToText, [{
-//     key: 'startListening',
-//     value: function startListening() {
-//       if (this.recognizing) {
-//         this.recognition.stop();
-//         return;
-//       }
-
-//       console.log("listening");
-
-//       main.pausePredicting();
-
-//       this.recognition.start();
+//   startListening(){
+//     if(this.recognizing){
+//       this.recognition.stop()
+//       return
 //     }
-//   }, {
-//     key: 'stopListening',
-//     value: function stopListening() {
-//       console.log("STOP LISTENING");
-//       if (this.recognizing) {
-//         console.log("stop speech to text");
-//         this.recognition.stop();
 
-//         //restart predicting
-//         main.startPredicting();
-//         return;
-//       }
-//     }
-//   }, {
-//     key: 'interimType',
-//     value: function interimType(text) {
-//       this.loader.style.display = "none";
-//       this.interimTextLine.innerText = text;
-//     }
-//   }, {
-//     key: 'type',
-//     value: function type(text) {
-//       this.loader.style.display = "none";
-//       this.textLine.innerText = text;
-//     }
-//   }]);
+//     console.log("listening")
 
-//   return SpeechToText;
-// }();
+//     main.pausePredicting()
+
+//     this.recognition.start()
+//   }
+
+//   stopListening(){
+//     console.log("STOP LISTENING")
+//     if(this.recognizing){
+//       console.log("stop speech to text")
+//       this.recognition.stop()
+
+//       //restart predicting
+//       main.startPredicting()
+//       return
+//     }
+//   }
+
+//   interimType(text){
+//     this.loader.style.display = "none"
+//     this.interimTextLine.innerText = text
+//   }
+
+//   type(text){
+//     this.loader.style.display = "none"
+//     this.textLine.innerText = text;
+//   }
+// }
 
 var main = null;
 
@@ -20751,7 +20734,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 // The following constants are related to IEEE 754 limits.
 //
-var global = this,
+
+// Detect the global object, even if operating in strict mode.
+// http://stackoverflow.com/a/14387057/265298
+var global = (0, eval)('this'),
     width = 256,        // each RC4 output is 0 <= x < 256
     chunks = 6,         // at least six RC4 outputs for each double
     digits = 52,        // there are 52 significant digits in a double
