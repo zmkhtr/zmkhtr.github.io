@@ -1,79 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bahasa Isyarat Nusantara</title>
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="dist/build.js"></script> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<title>
+    Starwars</title>
     
+
+
+<audio id="song">
+      <source src="music/imperialrap.mp3" type="audio/mpeg">
+</audio>
+
+
 </head>
+    
 <body>
-     <div class="header" id="header">
-        <img href="#" src="binus.png" alt="Italian Trulli"><a href="index.html" class="logo">Bahasa Isyarat Nusantara</a>
-   
-       
-      </div>
 
-  <!-- The Modal -->
-  <div id="launchModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span id="close-modal">&times;</span>
-        <h2>Bahasa Isyarat Nusantara</h2>
-      </div>
-      <div class="modal-body">
-        <p>ini adalah project menggunakan Tensorflow.js untuk membuat penerjemah Bahasa Isyarat menggunakan webcam</p>
-        <!-- <p>This project is an experiment that uses Tensorflow.js and your webcam to make Amazon Echo respond to sign language. It began with a simple question:</p> 
-        <p><b><em>"If voice is the future of computing what about those who cannot hear or speak?"</em></b></p> -->
-        <!-- <p>You can find the code for this demo on <a href="https://github.com/shekit/alexa-sign-language-translator" target="_blank">github</a> or watch a <a href="https://www.youtube.com/watch?v=kS53y6GWm0w" target="_blank">video</a> of it in action.</p> -->
-        <!-- <p style="font-size:12px;"><em>Note: This demo runs entirely in your browser without any data sent to any server</em></p> -->
-      </div>
-    </div>
-  </div>
 
-  <div id="status">
-    <p id="status-text">Status: Not Ready</p>
-  </div>
-
-  <div class="split-left">
-    
-      <video id="video" src='' muted autoplay playsinline></video>
-    
-    </div>
-  <div class="split-right">
-        <div class="centered">
-            <h1 id="text" class="intro-steps">Tambahkan Kata<br><span class="subtext">Tambahkan beberapa kata, setelah itu kita akan menambahkan datasetnya</h1>
-            <div id="training-list">
-              <div id="example-list"></div>
-              <div id="add">
-                <form id="add-word" autocomplete="off">
-                  <input type="text" id="new-word" placeholder="Tambahkan kata">
-                  <br/><br/>
-                  <label>
-                    <input type="checkbox" id="is-terminal-word">
-                    Apakah ini <b>Kata Akhiran</b>
-                  </label>
-                  <br/><br/>
-                  <input type="submit" class="button" value="Add Word">
-                  <p><b>Kata Akhiran</b> - Kata yang teradapat pada akhir kalimat atau pertanyaan</p>
-                  <p>Contoh : Jika kamu ingin bertanya "Siapa <b><em>disana</em></b>?" , <b><em>'disana'</em></b> adalah Kata akhiran</p>
-                </form>
-              </div>
-              <p id="count">Training: 2 words</p>
-              <div id="action-btn"></div>
-              <!-- <button id="action-btn" class="button" style="vertical-align:middle"><span>Selesai </span></button> -->
+  <div class="menubar">
+            <div class="logokepala"><a class="linkkepala" href="main_page.html"><img  src="pic/head.png" width="50px" height="46px"></a><div class="keterangan">Welcome to starwars fansite!</div></div>
+            <div class="menu"><a class="link" href="login.html">JOIN US!</a></div>
+            <div class="menu"><a class="link" href="story.html">Story</a></div>
+            <div class="menu"><a class="link" href="video.html">Video</a></div>
+            <div class="menu"><a class="link" href="picture.html">Picture</a></div>
             </div>
-            
-          </div>
-        </div>
-      <div id="loader"></div>
-      <h1>
-        <span id="answerText"></span>
-        <!-- <span id="interimText"></span> -->
-      </h1>
-  </div>
+    <div><center>
+
+        <a href="main_page.html"><img class="mainlogo" src="pic/starwarslogo.png" height="150px" width="300px"></center></a></div>
+    <div class="cpt"><center><img src="pic/captain.png" height="350px" width="400px"></center></div>
+    <div class="content">
+        <div class="slideshow-container">
+
+<div class="mySlides fade">
+  <img src="pic/starwars%20(5).jpg" style="width:100%" height="400px">
+</div>
+
+<div class="mySlides fade">
+  <img src="pic/starwars%20(13).jpg" style="width:100%" height="400px">
+</div>
+
+<div class="mySlides fade">
+  <img src="pic/starwars%20(39).jpg" style="width:100%" height="400px">
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+        <center><h1>STARWARS</h1> <br>
+<p>Star Wars is an American epic space opera franchise, centered on a film series created by George Lucas. It depicts the adventures of various characters "a long time ago in a galaxy far, far away", there are two main "actor" the <a style="color: blue">JEDI</a> and <a style="color: red">SITH</a>.</p>
+</center></div>
+    <div class="parallax"></div>
+    <center><div class="jedi"><br><br><img src="pic/jedi.png" height="100px" width="100px"><h1>JEDI</h1><br>a member of the mystical knightly order in the Star Wars films, trained to guard peace and justice in the universe.</div></center>
+    <div class="parallax1"></div>
+    <center><div class="sith"><br><br><img src="pic/sith.png" height="100px" width="100px"><h1>SITH</h1><br>The Sith are an order of Force-sensitive beings who use the dark side of the Force. </div></center>
+    <center><div class="force"><br><br><img src="pic/force2.png" height="auto" width="300px"></div></center>
+ 
+<div class="footer"><center>
+    <h2>Follow us:</h2><br>
+    <a href="https://www.facebook.com/azammukhtar"><img src="pic/facebook-logo-button.png"></a> <a  href="https://twitter.com/azam_mukhtar" ><img src="pic/twitter-logo-button.png"></a> <a  href="https://www.instagram.com/azam_mukhtar/"><img src="pic/instagram-logo.png"></a><br><br>
+    <h4>Copyright by <a href="mailto:azammukhtar3@Gmail.com">Azam Mukhtar</a></h4></center></div>
+
+    
+<script src="js/slider.js"type="text/javascript">
+</script>
+
+<script src="js/song.js" type="text/javascript">
+</script>
+
+<script src="js/topbt.js" type="text/javascript">
+</script>
+
+
 </body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </html>

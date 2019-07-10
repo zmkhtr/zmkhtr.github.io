@@ -1,0 +1,125 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/picture.css">
+<title>
+    Starwars</title>
+    <script src="js/jquery-3.2.1.js"></script>
+   <script>
+$(document).ready(function(){
+	$("#logform").hide();
+    $("#resfrom").hide();
+    $("#hide").click(function(){
+        $("#logform").show();
+        $("#resfrom").hide();
+        $(".logores").hide();
+        
+    });
+    $("#show").click(function(){
+    	$("#resfrom").show();
+        $("#logform").hide();
+        $(".logores").hide();
+        
+    });
+});
+</script>
+</head>
+    
+<body>
+
+
+  <div class="menubar">
+            <div class="logokepala"><a class="linkkepala" href="main_page.html"><img  src="pic/head.png" width="50px" height="46px"></a><div class="keterangan">Welcome to starwars fansite!</div></div>
+            <div class="menu"><a class="link" href="login.html">JOIN US!</a></div>
+            <div class="menu"><a class="link" href="story.html">Story</a></div>
+            <div class="menu"><a class="link" href="video.html">Video</a></div>
+            <div class="menu"><a class="link" href="picture.html">Picture</a></div>
+    </div>
+<div class="logores"><center>
+<button id="hide">Login</button> 
+<button id="show">Register</button>
+    </center>
+    </div>
+    <div id="hilang">
+    <div class="form" id="logform">
+        <h2>LOGIN</h2>	<form name="loginform" onsubmit="return login()">
+        <label for="pws">Email</label>
+		<input type="email" id="L_email" required="required"></br>
+        <label for="pws">Password</label>
+		<input type="password" id="L_password" required="required"></br>
+		<input type="submit" value="Login">
+	</form>
+    </div>
+    <div class="form" id="resfrom">
+        <form name="myform" onsubmit="return register()">
+            <h2>Fill the form to register !</h2>
+            <label for="pws">Username</label>
+            <input type="text" id="nname" required="required"></br>
+            <label for="pws">Email</label>
+			<input type="email" id="email" required="required"></br>
+            <label for="pws">Password</label>
+			<input type="password" id="password" required="required"></br>
+            <label for="pws">Confirm password</label>		
+            <input type="password" id="cpassword" required="required"></br>
+			<input type="submit" value="REGISTER"></br>
+			</form>
+        </div>
+    </div>
+
+   
+<script type="text/javascript">
+    document.getElementById('L_email').value=sessionStorage.getItem('1email');
+        function login() {
+            var L_email=document.getElementById('L_email').value;
+            var L_password=document.getElementById('L_password').value;
+            var cpass=sessionStorage.getItem('1password');
+            var nname=sessionStorage.getItem('1nname');
+
+            if (L_password!=cpass)
+            {
+                alert("Your email or password is wrong! Please try again!");
+                return false;
+            }
+            else
+            {
+                alert("Welcome, "+nname);
+                document.location.href="profile.html";
+                sessionStorage.setItem("1L_password", L_password);
+                return false;
+            }
+        }
+        </script>
+    <script type="text/javascript">
+        function register() {
+            var nname=document.getElementById('nname').value;
+            var email=document.getElementById('email').value;
+            var password=document.getElementById('password').value;
+            var cpassword=document.getElementById('cpassword').value;
+
+            if (password!=cpassword){
+                alert("Your password confirmation doesn't match");
+                return false;
+            }
+
+            else if(email==""||password==""||cpassword=="")
+            {
+                return false;
+            }
+
+            else{
+                alert("Thank you for register, "+nname);
+                sessionStorage.setItem("1nname",nname);
+                sessionStorage.setItem("1email",email);
+                sessionStorage.setItem("1password",password);
+                document.location.href="login.html";
+                return false;
+            }
+        }
+        </script>
+
+<div class="footer"><center>
+    <h2>Follow us:</h2><br>
+    <a href="https://www.facebook.com/azammukhtar"><img src="pic/facebook-logo-button.png"></a> <a  href="https://twitter.com/azam_mukhtar" ><img src="pic/twitter-logo-button.png"></a> <a  href="https://www.instagram.com/azam_mukhtar/"><img src="pic/instagram-logo.png"></a><br><br>
+    <h4>Copyright by <a href="mailto:azammukhtar3@Gmail.com">Azam Mukhtar</a></h4></center></div>
+    
+    </body></html>

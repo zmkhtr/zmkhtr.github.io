@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/picture.css">
+<title>
+    Starwars</title>
+    
+</head>
+    
+<body>
+
+
+  <div class="menubar">
+            <div class="logokepala"><a class="linkkepala" href="main_page.html"><img  src="pic/head.png" width="50px" height="46px"></a><div class="keterangan">Welcome to starwars fansite!</div></div>
+            <div class="menu"><a class="link" href="login.html">JOIN US!</a></div>
+            <div class="menu"><a class="link" href="story.html">Story</a></div>
+            <div class="menu"><a class="link" href="video.html">Video</a></div>
+            <div class="menu"><a class="link" href="picture.html">Picture</a></div>
+    </div><center>
+    <div class="logores">
+        <h1>PROFILE</h1>
+        <br />
+        <img src="img/Person.jpg" class="ava" href="profile.html"><br />
+        <h1 id="nname"></h1>
+        </div>
+    <script type="text/javascript">
+	document.getElementById('nname').innerHTML="<text>"+ sessionStorage.getItem('1nname')+"</text>";
+</script>
+
+<div class="footer"><center>
+    <h2>Follow us:</h2><br>
+    <a href="https://www.facebook.com/azammukhtar"><img src="pic/facebook-logo-button.png"></a> <a  href="https://twitter.com/azam_mukhtar" ><img src="pic/twitter-logo-button.png"></a> <a  href="https://www.instagram.com/azam_mukhtar/"><img src="pic/instagram-logo.png"></a><br><br>
+    <h4>Copyright by <a href="mailto:azammukhtar3@Gmail.com">Azam Mukhtar</a></h4></center></div>
+    
+    </body></html>
