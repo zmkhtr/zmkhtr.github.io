@@ -61,7 +61,24 @@ body {
 
 .cta-buttons {
     display: flex;
+    flex-direction: column;
     gap: 20px;
+}
+
+.mobile-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.browser-button {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.browser-button .cta-button {
+    width: 100%;
+    max-width: 100%;
 }
 
 .cta-button {
@@ -290,4 +307,31 @@ body {
         display: block;
         margin: 10px 0;
     }
+}
+
+
+.social-update {
+    margin-top: 30px;
+}
+
+.social-update p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.2s;
+}
+
+.social-icon:hover {
+    color: #A2845E;
+    transform: translateY(-2px);
 }
