@@ -102,6 +102,22 @@ body {
     border-color: white;
 }
 
+.cta-button.early-access {
+    background: #8B6B4A;
+}
+
+.cta-button[href*="apps.apple.com"] {
+    background: #A2845E;
+    box-shadow: 0 0 20px rgba(162, 132, 94, 0.3);
+    transform: scale(1.02);
+}
+
+.cta-button[href*="apps.apple.com"]:hover {
+    background: #8B6B4A;
+    box-shadow: 0 0 25px rgba(162, 132, 94, 0.4);
+    transform: scale(1.03);
+}
+
 .hero-image img {
     max-width: 100%;
     height: auto;
