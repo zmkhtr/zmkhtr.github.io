@@ -47,6 +47,12 @@ body {
     margin: 0;
 }
 
+.logo {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+}
+
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 20px;
@@ -743,3 +749,100 @@ body {
         display: none;
     }
 }
+
+/* HERO ENHANCEMENTS */
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, #fff, #f0e6d2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-image {
+    perspective: 1000px;
+}
+
+.hero-image video, .hero-image img {
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    transform: rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover video, .hero-image:hover img {
+    transform: rotateY(0) rotateX(0);
+}
+
+/* BUTTON HOOKS */
+.cta-button {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* FEATURE CARDS POLISH */
+.feature-card {
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(162, 132, 94, 0.15);
+    border-color: rgba(162, 132, 94, 0.3);
+}
+
+.feature-card i {
+    background: linear-gradient(135deg, #A2845E, #8B6B4A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-image {
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+.feature-card {
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+
