@@ -11,15 +11,30 @@
 </head>
 
 <body>
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <img src="images/logo.png" alt="Khatm Logo">
+                <span>Khatm</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/support-us.html" class="nav-link active">Support Us</a>
+                <a href="https://codeturnal.com" target="_blank" class="nav-developed-by">
+                    <span class="nav-text-mobile-hide">Developed by</span>
+                    <img src="images/codeturnal-logo.jpg" alt="Codeturnal" title="Developed by Codeturnal">
+                </a>
+            </nav>
+        </div>
+    </header>
+
     <!-- Hero Section -->
     <section class="hero support-hero">
         <div class="container">
             <div class="hero-content" style="width: 100%; text-align: center;">
                 <div class="title-container" style="justify-content: center;">
-                    <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
-                        <img src="images/logo.png" alt="Khatm Logo" class="title-logo">
-                        <h1 style="color: white; margin: 0;">Support Khatm</h1>
-                    </a>
+                    <!-- Removed duplicate logo/title since it is now in header -->
+                    <h1 style="color: white; margin: 0;">Support Khatm</h1>
                 </div>
                 <p style="max-width: 600px; margin: 20px auto;">
                     Your support helps us continue developing Khatm, keeping it ad-free and accessible to everyone.
@@ -64,16 +79,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="/">Home</a>
                     <a href="/privacy-policy.html">Privacy Policy</a>
                 </div>
                 <p class="copyright">&copy; <span id="current-year"></span> Khatm. All rights reserved.</p>
-                <div class="developed-by">
-                    <span>Developed by</span>
-                    <a href="https://codeturnal.com" target="_blank">
-                        <img src="images/codeturnal-logo.jpg" alt="Codeturnal" class="codeturnal-logo">
-                    </a>
-                </div>
             </div>
         </div>
     </footer>

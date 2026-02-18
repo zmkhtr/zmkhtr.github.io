@@ -622,3 +622,124 @@ body {
         font-size: 2.5rem;
     }
 }
+/* Header Styles */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.nav-brand img {
+    height: 32px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #A2845E;
+}
+
+.nav-developed-by {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.nav-developed-by img {
+    height: 20px;
+    width: auto;
+    border-radius: 4px;
+}
+
+/* Adjust Hero for fixed header */
+.hero {
+    padding-top: 150px; /* 80px + header height */
+}
+
+.support-hero {
+    padding-top: 120px;
+}
+
+/* Enhanced Footer */
+.footer {
+    background: #3E2723;
+    color: rgba(255,255,255,0.8);
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* Mobile Nav */
+@media (max-width: 768px) {
+    .nav-developed-by {
+        display: none; /* Hide specifically "developed by" text on very small screens if needed, or keep icon */
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-text-mobile-hide {
+        display: none;
+    }
+}
