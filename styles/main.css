@@ -273,7 +273,7 @@ body {
 
 /* Footer */
 .footer {
-    background: #1a1a1a;
+    background: #3E2723;
     color: white;
     padding: 40px 0;
 }
@@ -351,6 +351,7 @@ body {
     color: #A2845E;
     transform: translateY(-2px);
 }
+
 /* Support Page Styles */
 .support-hero {
     min-height: 80vh;
@@ -363,6 +364,14 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+.support-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-template-columns: none;
+    max-width: 100%;
 }
 
 .support-options {
@@ -380,8 +389,8 @@ body {
     color: #333;
     padding: 40px 30px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    flex: 1 1 300px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    flex: 1 1 340px;
     max-width: 400px;
     text-align: center;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -425,7 +434,7 @@ body {
 .support-btn {
     width: 100%;
     justify-content: center;
-    background: #A2845E; 
+    background: #A2845E;
     border-color: #A2845E;
     margin-top: auto;
 }
@@ -464,18 +473,152 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .support-hero {
-        padding-top: 40px;
+        padding-top: 60px;
         min-height: auto;
-        padding-bottom: 60px;
+        padding-bottom: 80px;
+        text-align: center;
     }
-    
+
     .support-options {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .support-card {
         width: 100%;
         max-width: 350px;
+    }
+}
+
+/* QRIS Image Styling */
+.qris-container {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.qris-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Developed By Section */
+.developed-by {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.developed-by span {
+    white-space: nowrap;
+}
+
+.codeturnal-logo {
+    height: 24px;
+    width: auto;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+}
+
+.codeturnal-logo:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .developed-by {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Download QRIS Button */
+.download-qris-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    width: 100%;
+    cursor: pointer;
+}
+
+.download-qris-btn:hover {
+    background-color: #f5f5f5;
+    color: #333;
+    border-color: #ccc;
+    transform: translateY(-2px);
+}
+
+.download-qris-btn i {
+    font-size: 1rem;
+}
+
+/* Beautify Enhancements */
+.support-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.support-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.support-card {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.support-options {
+    gap: 40px;
+}
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 480px) {
+    .support-card {
+        padding: 30px 20px;
+        min-width: 100%;
+    }
+
+    .qris-container {
+        padding: 10px;
+    }
+
+    .support-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        line-height: 60px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
     }
 }

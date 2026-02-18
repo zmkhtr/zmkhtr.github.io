@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Hero Section -->
     <section class="hero support-hero">
@@ -20,10 +22,10 @@
                     </a>
                 </div>
                 <p style="max-width: 600px; margin: 20px auto;">
-                    Your support helps us continue developing Khatm, keeping it ad-free and accessible to everyone. 
+                    Your support helps us continue developing Khatm, keeping it ad-free and accessible to everyone.
                     May Allah reward you for your generosity.
                 </p>
-                
+
                 <div class="support-options">
                     <!-- International Support -->
                     <div class="support-card">
@@ -44,14 +46,13 @@
                             <i class="fas fa-flag"></i> <!-- Placeholder icon could be ID flag or generic -->
                         </div>
                         <h3>Indonesia Support</h3>
-                        <p>Scan QRIS code (Coming Soon)</p>
-                        <div class="qris-placeholder">
-                            <div class="qris-image-container">
-                                <!-- Placeholder for QRIS image -->
-                                <i class="fas fa-qrcode" style="font-size: 3rem; color: #ddd;"></i>
-                                <span style="display: block; margin-top: 10px; color: #666;">QRIS Image will be available here</span>
-                            </div>
+                        <p>Scan QRIS code to support us.</p>
+                        <div class="qris-container">
+                            <img src="images/qris-code.jpg" alt="Scan QRIS to Support" class="qris-image">
                         </div>
+                        <a href="images/qris-code.jpg" download="Khatm-QRIS" class="download-qris-btn">
+                            <i class="fas fa-download"></i> Save QRIS Image
+                        </a>
                     </div>
                 </div>
             </div>
@@ -67,10 +68,20 @@
                     <a href="/privacy-policy.html">Privacy Policy</a>
                 </div>
                 <p class="copyright">&copy; <span id="current-year"></span> Khatm. All rights reserved.</p>
+                <div class="developed-by">
+                    <span>Developed by</span>
+                    <a href="https://codeturnal.com" target="_blank">
+                        <img src="images/codeturnal-logo.jpg" alt="Codeturnal" class="codeturnal-logo">
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- QRIS Image Update -->
+    <!-- Note: User needs to save the QRIS image as 'images/qris-code.png' -->
+
     <script src="js/main.js"></script>
 </body>
+
 </html>
