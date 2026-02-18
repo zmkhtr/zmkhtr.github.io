@@ -351,3 +351,131 @@ body {
     color: #A2845E;
     transform: translateY(-2px);
 }
+/* Support Page Styles */
+.support-hero {
+    min-height: 80vh;
+    padding-top: 50px;
+    align-items: flex-start;
+}
+
+.support-hero .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.support-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.support-card {
+    background: white;
+    color: #333;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    flex: 1 1 300px;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.support-card:hover {
+    transform: translateY(-8px);
+}
+
+.support-icon {
+    font-size: 2.5rem;
+    color: #A2845E;
+    margin-bottom: 20px;
+    background: rgba(162, 132, 94, 0.1);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.support-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+.support-card p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.support-btn {
+    width: 100%;
+    justify-content: center;
+    background: #A2845E; 
+    border-color: #A2845E;
+    margin-top: auto;
+}
+
+.support-btn:hover {
+    background: #8B6B4A;
+    border-color: #8B6B4A;
+    color: white;
+}
+
+.qris-placeholder {
+    width: 100%;
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    padding: 30px;
+    background: #f9f9f9;
+    color: #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.qris-image-container i {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.qris-image-container span {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .support-hero {
+        padding-top: 40px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+    
+    .support-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .support-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
