@@ -605,6 +605,17 @@ a {
     color: var(--text-main);
 }
 
+.support-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.support-hero .title-container {
+    justify-content: center;
+}
+
 .support-hero h1 {
     color: var(--text-main);
     font-size: 3.5rem;
@@ -622,7 +633,9 @@ a {
 .support-hero-content p {
     font-size: 1.2rem;
     color: var(--text-muted);
-    margin-bottom: 60px;
+    margin: 0 auto 60px;
+    max-width: 600px;
+    text-align: center;
 }
 
 .support-options {
