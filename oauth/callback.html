@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khatm - Authenticating...</title>
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      :root {
+        --primary: #a2845e;
+        --primary-dark: #8b6b4a;
+        --bg-color: #fafafb;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --footer-bg: #1f2937;
+        --radius-md: 18px;
+        --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Outfit", sans-serif;
+        background: var(--bg-color);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        padding: 0 2rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .nav-brand img {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        padding: 2.5rem 3rem;
+        max-width: 460px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .icon-wrapper {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+
+      .icon-wrapper.loading {
+        background: #f3ede6;
+        color: var(--primary);
+      }
+
+      .icon-wrapper.success {
+        background: #ecfdf5;
+        color: #10b981;
+      }
+
+      .icon-wrapper.error {
+        background: #fef2f2;
+        color: #ef4444;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e8ddd4;
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      h1 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.6rem;
+        color: var(--text-main);
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.65rem 1.6rem;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: #fff;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: opacity 0.2s;
+      }
+
+      .btn:hover {
+        opacity: 0.88;
+      }
+
+      footer {
+        background: var(--footer-bg);
+        color: #9ca3af;
+        text-align: center;
+        padding: 1.2rem;
+        font-size: 0.8rem;
+      }
+
+      footer a {
+        color: #9ca3af;
+        text-decoration: none;
+        margin: 0 0.5rem;
+      }
+
+      footer a:hover {
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="/" class="nav-brand">
+        <img src="/images/logo.png" alt="Khatm Logo" />
+        <span>Khatm</span>
+      </a>
+    </header>
+
+    <main>
+      <div class="card" id="card">
+        <!-- Content injected by JS -->
+      </div>
+    </main>
+
+    <footer>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <span>&copy; <span id="year"></span> Khatm. All rights reserved.</span>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const card = document.getElementById("card");
+
+      function getParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          code: params.get("code"),
+          state: params.get("state"),
+          error: params.get("error"),
+          error_description: params.get("error_description"),
+        };
+      }
+
+      function showLoading() {
+        card.innerHTML = `
+          <div class="icon-wrapper loading">
+            <div class="spinner"></div>
+          </div>
+          <h1>Authenticating&hellip;</h1>
+          <p>Please wait while we complete the sign-in process.</p>
+        `;
+      }
+
+      function showSuccess() {
+        card.innerHTML = `
+          <div class="icon-wrapper success">&#10003;</div>
+          <h1>Authentication Successful</h1>
+          <p>You have been signed in successfully. You can return to the Khatm app.</p>
+          <a href="/" class="btn">Back to Home</a>
+        `;
+      }
+
+      function showError(message) {
+        card.innerHTML = `
+          <div class="icon-wrapper error">&#10007;</div>
+          <h1>Authentication Failed</h1>
+          <p>${message || "Something went wrong during sign-in. Please try again."}</p>
+          <a href="/" class="btn">Back to Home</a>
+        `;
+      }
+
+      function handleCallback() {
+        const { code, state, error, error_description } = getParams();
+
+        if (error) {
+          showError(error_description || error);
+          return;
+        }
+
+        if (code) {
+          showLoading();
+
+          // Pass the code + state back to the native app via a deep link.
+          // The app registers the custom URL scheme "khatm://".
+          // If the deep link fails (e.g. on desktop), show a success message.
+          const deepLink = `khatm://oauth/callback?code=${encodeURIComponent(code)}${state ? "&state=" + encodeURIComponent(state) : ""}`;
+
+          window.location.href = deepLink;
+
+          // Fallback: if the app didn't open within 1.5 s, show success card.
+          setTimeout(showSuccess, 1500);
+          return;
+        }
+
+        // No code and no error — likely a direct visit.
+        showError("No authorization code received. Please start the sign-in flow from the app.");
+      }
+
+      handleCallback();
+    </script>
+  </body>
+</html>
