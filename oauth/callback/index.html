@@ -132,6 +132,12 @@
         line-height: 1.6;
       }
 
+      #status {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        color: var(--text-main);
+      }
+
       .btn {
         display: inline-block;
         margin-top: 1.5rem;
@@ -179,7 +185,11 @@
 
     <main>
       <div class="card" id="card">
-        <!-- Content injected by JS -->
+        <div class="icon-wrapper loading">
+          <div class="spinner"></div>
+        </div>
+        <h1>Authenticating&hellip;</h1>
+        <p id="status">Completing sign in…</p>
       </div>
     </main>
 
@@ -193,28 +203,23 @@
       document.getElementById("year").textContent = new Date().getFullYear();
 
       const card = document.getElementById("card");
+      const statusEl = document.getElementById("status");
 
       function getParams() {
         const params = new URLSearchParams(window.location.search);
         return {
-          code:              params.get("code"),
-          state:             params.get("state"),
-          access_token:      params.get("access_token"),
-          token_type:        params.get("token_type"),
-          scope:             params.get("scope"),
-          error:             params.get("error"),
+          code: params.get("code"),
+          state: params.get("state"),
+          access_token: params.get("access_token"),
+          token_type: params.get("token_type"),
+          scope: params.get("scope"),
+          error: params.get("error"),
           error_description: params.get("error_description"),
         };
       }
 
-      function showLoading() {
-        card.innerHTML = `
-          <div class="icon-wrapper loading">
-            <div class="spinner"></div>
-          </div>
-          <h1>Authenticating&hellip;</h1>
-          <p>Please wait while we complete the sign-in process.</p>
-        `;
+      function setStatus(message) {
+        statusEl.textContent = message;
       }
 
       function buildDeepLink(params) {
@@ -232,7 +237,7 @@
         card.innerHTML = `
           <div class="icon-wrapper success">&#10003;</div>
           <h1>Authentication Successful</h1>
-          <p>Redirecting you back to Khatm&hellip;</p>
+          <p id="status">Signed in! You can close this tab.</p>
           <a href="${deepLink}" class="btn">Open Khatm App</a>
         `;
       }
@@ -248,23 +253,46 @@
 
       function handleCallback() {
         const params = getParams();
-        const { code, error, error_description } = params;
+        const { code, state, error, error_description } = params;
+        const extensionId = state ? state.split(".").pop() : null;
+        const hasChromeRuntime = typeof chrome !== "undefined" && chrome.runtime;
 
         if (error) {
           showError(error_description || error);
           return;
         }
 
-        if (code) {
-          showLoading();
+        if (code && extensionId && hasChromeRuntime) {
+          setStatus("Completing sign in…");
 
+          chrome.runtime.sendMessage(
+            extensionId,
+            { type: "KHATM_OAUTH_CALLBACK", code, state, error },
+            function (response) {
+              if (chrome.runtime.lastError) {
+                setStatus(
+                  "Could not reach extension: " + chrome.runtime.lastError.message
+                );
+                return;
+              }
+              if (response?.success) {
+                setStatus("Signed in! You can close this tab.");
+                setTimeout(() => window.close(), 1500);
+              } else {
+                setStatus(
+                  "Sign in failed: " + (response?.error ?? "unknown error")
+                );
+              }
+            }
+          );
+          return;
+        }
+
+        if (code) {
           const deepLink = buildDeepLink(params);
 
-          // Attempt to open the native app immediately.
+          // Preserve the existing mobile flow.
           window.location.href = deepLink;
-
-          // After 1.5 s, if the app didn't intercept the redirect, show the
-          // manual "Open Khatm App" button so the user can tap it themselves.
           setTimeout(() => showSuccess(deepLink), 1500);
           return;
         }
