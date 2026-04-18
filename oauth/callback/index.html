@@ -6,50 +6,8 @@
     <title>Signing in...</title>
   </head>
   <body>
-    <div id="status" style="font-family: sans-serif; padding: 24px;">
+    <div id="status" style="font-family:sans-serif;padding:24px;">
       Completing sign in...
     </div>
-
-    <script>
-      (function () {
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get('code');
-        const state = params.get('state');
-        const error = params.get('error');
-
-        const status = document.getElementById('status');
-
-        if (!code || !state) {
-          status.textContent = error ? `Sign in failed: ${error}` : 'Missing OAuth code or state.';
-          return;
-        }
-
-        // Try extension messaging first
-        const extensionId = state.split('.').pop();
-
-        if (typeof chrome !== 'undefined' && chrome.runtime && extensionId) {
-          chrome.runtime.sendMessage(
-            extensionId,
-            { type: 'KHATM_OAUTH_CALLBACK', code, state, error },
-            function (response) {
-              if (chrome.runtime.lastError) {
-                status.textContent = 'Could not reach extension: ' + chrome.runtime.lastError.message;
-                return;
-              }
-
-              if (response && response.success) {
-                status.textContent = 'Signed in! You can close this tab.';
-                setTimeout(() => window.close(), 1200);
-              } else {
-                status.textContent = 'Sign in failed: ' + (response?.error || 'unknown error');
-              }
-            }
-          );
-          return;
-        }
-
-        status.textContent = 'Extension not detected.';
-      })();
-    </script>
   </body>
 </html>
