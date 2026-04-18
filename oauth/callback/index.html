@@ -197,9 +197,12 @@
       function getParams() {
         const params = new URLSearchParams(window.location.search);
         return {
-          code: params.get("code"),
-          state: params.get("state"),
-          error: params.get("error"),
+          code:              params.get("code"),
+          state:             params.get("state"),
+          access_token:      params.get("access_token"),
+          token_type:        params.get("token_type"),
+          scope:             params.get("scope"),
+          error:             params.get("error"),
           error_description: params.get("error_description"),
         };
       }
@@ -214,12 +217,23 @@
         `;
       }
 
-      function showSuccess() {
+      function buildDeepLink(params) {
+        const { code, state, token_type, scope, access_token } = params;
+        const qs = new URLSearchParams();
+        if (code)         qs.set("code", code);
+        if (state)        qs.set("state", state);
+        if (access_token) qs.set("access_token", access_token);
+        if (token_type)   qs.set("token_type", token_type);
+        if (scope)        qs.set("scope", scope);
+        return `com.codeturnal.Khatm://oauth/callback?${qs.toString()}`;
+      }
+
+      function showSuccess(deepLink) {
         card.innerHTML = `
           <div class="icon-wrapper success">&#10003;</div>
           <h1>Authentication Successful</h1>
-          <p>You have been signed in successfully. You can return to the Khatm app.</p>
-          <a href="/" class="btn">Back to Home</a>
+          <p>Redirecting you back to Khatm&hellip;</p>
+          <a href="${deepLink}" class="btn">Open Khatm App</a>
         `;
       }
 
@@ -233,7 +247,8 @@
       }
 
       function handleCallback() {
-        const { code, state, error, error_description } = getParams();
+        const params = getParams();
+        const { code, error, error_description } = params;
 
         if (error) {
           showError(error_description || error);
@@ -243,15 +258,14 @@
         if (code) {
           showLoading();
 
-          // Pass the code + state back to the native app via a deep link.
-          // The app registers the custom URL scheme "khatm://".
-          // If the deep link fails (e.g. on desktop), show a success message.
-          const deepLink = `khatm://oauth/callback?code=${encodeURIComponent(code)}${state ? "&state=" + encodeURIComponent(state) : ""}`;
+          const deepLink = buildDeepLink(params);
 
+          // Attempt to open the native app immediately.
           window.location.href = deepLink;
 
-          // Fallback: if the app didn't open within 1.5 s, show success card.
-          setTimeout(showSuccess, 1500);
+          // After 1.5 s, if the app didn't intercept the redirect, show the
+          // manual "Open Khatm App" button so the user can tap it themselves.
+          setTimeout(() => showSuccess(deepLink), 1500);
           return;
         }
 
