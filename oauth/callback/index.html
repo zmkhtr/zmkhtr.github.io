@@ -1,313 +1,55 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khatm - Authenticating...</title>
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
-    />
-    <style>
-      :root {
-        --primary: #a2845e;
-        --primary-dark: #8b6b4a;
-        --bg-color: #fafafb;
-        --text-main: #111827;
-        --text-muted: #6b7280;
-        --footer-bg: #1f2937;
-        --radius-md: 18px;
-        --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Outfit", sans-serif;
-        background: var(--bg-color);
-        color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      header {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        padding: 0 2rem;
-        height: 64px;
-        display: flex;
-        align-items: center;
-      }
-
-      .nav-brand {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        text-decoration: none;
-        color: var(--text-main);
-        font-weight: 600;
-        font-size: 1.1rem;
-      }
-
-      .nav-brand img {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-      }
-
-      main {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-      }
-
-      .card {
-        background: #fff;
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-md);
-        padding: 2.5rem 3rem;
-        max-width: 460px;
-        width: 100%;
-        text-align: center;
-      }
-
-      .icon-wrapper {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        margin: 0 auto 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-      }
-
-      .icon-wrapper.loading {
-        background: #f3ede6;
-        color: var(--primary);
-      }
-
-      .icon-wrapper.success {
-        background: #ecfdf5;
-        color: #10b981;
-      }
-
-      .icon-wrapper.error {
-        background: #fef2f2;
-        color: #ef4444;
-      }
-
-      .spinner {
-        width: 40px;
-        height: 40px;
-        border: 3px solid #e8ddd4;
-        border-top-color: var(--primary);
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      h1 {
-        font-size: 1.4rem;
-        font-weight: 600;
-        margin-bottom: 0.6rem;
-        color: var(--text-main);
-      }
-
-      p {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-      }
-
-      #status {
-        margin-top: 0.5rem;
-        font-size: 1rem;
-        color: var(--text-main);
-      }
-
-      .hint {
-        margin-top: 0.75rem;
-        font-size: 0.88rem;
-      }
-
-      .btn {
-        display: inline-block;
-        margin-top: 1.5rem;
-        padding: 0.65rem 1.6rem;
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        color: #fff;
-        border-radius: 10px;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: opacity 0.2s;
-      }
-
-      .btn:hover {
-        opacity: 0.88;
-      }
-
-      footer {
-        background: var(--footer-bg);
-        color: #9ca3af;
-        text-align: center;
-        padding: 1.2rem;
-        font-size: 0.8rem;
-      }
-
-      footer a {
-        color: #9ca3af;
-        text-decoration: none;
-        margin: 0 0.5rem;
-      }
-
-      footer a:hover {
-        color: #fff;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Signing in...</title>
   </head>
-
   <body>
-    <header>
-      <a href="/" class="nav-brand">
-        <img src="/images/logo.png" alt="Khatm Logo" />
-        <span>Khatm</span>
-      </a>
-    </header>
-
-    <main>
-      <div class="card" id="card">
-        <div class="icon-wrapper loading">
-          <div class="spinner"></div>
-        </div>
-        <h1>Authenticating&hellip;</h1>
-        <p id="status">Completing sign in…</p>
-        <p class="hint">This will return you to the Khatm extension or app automatically.</p>
-      </div>
-    </main>
-
-    <footer>
-      <a href="/terms-of-service.html">Terms of Service</a>
-      <a href="/privacy-policy.html">Privacy Policy</a>
-      <span>&copy; <span id="year"></span> Khatm. All rights reserved.</span>
-    </footer>
+    <div id="status" style="font-family: sans-serif; padding: 24px;">
+      Completing sign in...
+    </div>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      const card = document.getElementById("card");
-      const statusEl = document.getElementById("status");
-
-      function getParams() {
+      (function () {
         const params = new URLSearchParams(window.location.search);
-        return {
-          code: params.get("code"),
-          state: params.get("state"),
-          access_token: params.get("access_token"),
-          token_type: params.get("token_type"),
-          scope: params.get("scope"),
-          error: params.get("error"),
-          error_description: params.get("error_description"),
-        };
-      }
+        const code = params.get('code');
+        const state = params.get('state');
+        const error = params.get('error');
 
-      function setStatus(message) {
-        statusEl.textContent = message;
-      }
+        const status = document.getElementById('status');
 
-      function buildDeepLink(params) {
-        const { code, state, token_type, scope, access_token } = params;
-        const qs = new URLSearchParams();
-        if (code)         qs.set("code", code);
-        if (state)        qs.set("state", state);
-        if (access_token) qs.set("access_token", access_token);
-        if (token_type)   qs.set("token_type", token_type);
-        if (scope)        qs.set("scope", scope);
-        return `com.codeturnal.Khatm://oauth/callback?${qs.toString()}`;
-      }
-
-      function showSuccess(deepLink) {
-        card.innerHTML = `
-          <div class="icon-wrapper success">&#10003;</div>
-          <h1>Authentication Successful</h1>
-          <p id="status">Signed in! You can close this tab.</p>
-          <a href="${deepLink}" class="btn">Open Khatm App</a>
-        `;
-      }
-
-      function showError(message) {
-        card.innerHTML = `
-          <div class="icon-wrapper error">&#10007;</div>
-          <h1>Authentication Failed</h1>
-          <p>${message || "Something went wrong during sign-in. Please try again."}</p>
-          <a href="/" class="btn">Back to Home</a>
-        `;
-      }
-
-      function handleCallback() {
-        const params = getParams();
-        const { code, state, error, error_description } = params;
-        const extensionId = state ? state.split(".").pop() : null;
-        const hasChromeRuntime = typeof chrome !== "undefined" && chrome.runtime;
-
-        if (error) {
-          showError(error_description || error);
+        if (!code || !state) {
+          status.textContent = error ? `Sign in failed: ${error}` : 'Missing OAuth code or state.';
           return;
         }
 
-        if (code && extensionId && hasChromeRuntime) {
-          setStatus("Completing sign in…");
+        // Try extension messaging first
+        const extensionId = state.split('.').pop();
 
+        if (typeof chrome !== 'undefined' && chrome.runtime && extensionId) {
           chrome.runtime.sendMessage(
             extensionId,
-            { type: "KHATM_OAUTH_CALLBACK", code, state, error },
+            { type: 'KHATM_OAUTH_CALLBACK', code, state, error },
             function (response) {
               if (chrome.runtime.lastError) {
-                setStatus(
-                  "Could not reach extension: " + chrome.runtime.lastError.message
-                );
+                status.textContent = 'Could not reach extension: ' + chrome.runtime.lastError.message;
                 return;
               }
-              if (response?.success) {
-                setStatus("Signed in! You can close this tab.");
-                setTimeout(() => window.close(), 1500);
+
+              if (response && response.success) {
+                status.textContent = 'Signed in! You can close this tab.';
+                setTimeout(() => window.close(), 1200);
               } else {
-                setStatus(
-                  "Sign in failed: " + (response?.error ?? "unknown error")
-                );
+                status.textContent = 'Sign in failed: ' + (response?.error || 'unknown error');
               }
             }
           );
           return;
         }
 
-        if (code) {
-          const deepLink = buildDeepLink(params);
-
-          // Preserve the existing mobile flow.
-          window.location.href = deepLink;
-          setTimeout(() => showSuccess(deepLink), 1500);
-          return;
-        }
-
-        // No code and no error — likely a direct visit.
-        showError("No authorization code received. Please start the sign-in flow from the app.");
-      }
-
-      handleCallback();
+        status.textContent = 'Extension not detected.';
+      })();
     </script>
   </body>
 </html>
