@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khatm - Hackathon Demo</title>
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .cta-button.disabled {
+        background: #4b5563;
+        color: rgba(255, 255, 255, 0.5) !important;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+        filter: grayscale(1) opacity(0.6);
+      }
+
+      .cta-button.disabled::before,
+      .cta-button.disabled::after {
+        display: none;
+      }
+
+      .cta-button.disabled:hover {
+        transform: none;
+        box-shadow: none;
+      }
+
+      .download-note {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 8px;
+        display: block;
+        line-height: 1.5;
+      }
+
+      .download-note.active {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .download-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .recommended-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(52, 211, 153, 0.15);
+        color: #34d399;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+        width: fit-content;
+      }
+
+      .recommended-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #34d399;
+        box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.25);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <a href="/" class="nav-brand">
+          <img src="/images/logo.png" alt="Khatm Logo" class="logo" />
+          <span>Khatm</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/hackathon" class="nav-link active">Hackathon</a>
+          <a href="/support-us.html" class="nav-link">Support Us</a>
+          <a
+            href="https://codeturnal.com"
+            target="_blank"
+            class="nav-developed-by"
+          >
+            <span class="nav-text-mobile-hide">Developed by</span>
+            <img
+              src="/images/codeturnal-logo.jpg"
+              alt="Codeturnal"
+              title="Developed by Codeturnal"
+              class="logo"
+            />
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="title-container">
+            <img src="/images/logo.png" alt="Khatm Logo" class="title-logo" />
+            <h1>Khatm</h1>
+          </div>
+          <p>
+            Hey judges! The Android build is the one to test — it has the full
+            Quran Foundation API integration up and running. Please download
+            from the Play Store for the complete experience.
+          </p>
+
+          <div class="cta-buttons">
+            <div class="mobile-buttons">
+
+              <!-- Android: fully ready -->
+              <div class="download-group">
+                <span class="recommended-badge">Try this</span>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.codeturnal.Khatm"
+                  class="cta-button"
+                >
+                  <i class="fab fa-google-play"></i>
+                  Download on Playstore
+                </a>
+                <span class="download-note active">
+                  Full Quran Foundation API — ready to demo.
+                </span>
+              </div>
+
+              <!-- iOS: pending review -->
+              <div class="download-group">
+                <div class="cta-button disabled">
+                  <i class="fab fa-apple"></i>
+                  Download on App Store
+                </div>
+                <span class="download-note">
+                  Quran Foundation feature is still going through App Store review.
+                </span>
+              </div>
+
+            </div>
+
+            <!-- Browser extension: auth broken -->
+            <div class="download-group">
+              <div class="cta-button disabled" style="width: max-content;">
+                <i class="fab fa-chrome"></i>
+                Browser Extension
+              </div>
+              <span class="download-note">
+                Not fully featured yet — Quran Foundation auth is still being fixed.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <video autoplay loop muted playsinline>
+            <source src="/images/intro.MP4" type="video/mp4" />
+            <img src="/images/1.png" alt="App Screenshot" />
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="/terms-of-service.html">Terms of Service</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+          </div>
+          <p class="copyright">
+            &copy; <span id="current-year"></span> Khatm. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>
