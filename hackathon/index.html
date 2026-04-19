@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khatm - Hackathon Demo</title>
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -14,10 +14,10 @@
       .cta-button.disabled {
         background: #4b5563;
         color: rgba(255, 255, 255, 0.5) !important;
-        cursor: not-allowed;
-        pointer-events: none;
         box-shadow: none;
         filter: grayscale(1) opacity(0.6);
+        pointer-events: auto;
+        cursor: pointer;
       }
 
       .cta-button.disabled::before,
@@ -28,6 +28,7 @@
       .cta-button.disabled:hover {
         transform: none;
         box-shadow: none;
+        filter: grayscale(1) opacity(0.75);
       }
 
       .download-note {
@@ -79,7 +80,7 @@
     <header class="main-header">
       <div class="container">
         <a href="/" class="nav-brand">
-          <img src="/images/logo.png" alt="Khatm Logo" class="logo" />
+          <img src="../images/logo.png" alt="Khatm Logo" class="logo" />
           <span>Khatm</span>
         </a>
         <nav class="nav-links">
@@ -93,7 +94,7 @@
           >
             <span class="nav-text-mobile-hide">Developed by</span>
             <img
-              src="/images/codeturnal-logo.jpg"
+              src="../images/codeturnal-logo.jpg"
               alt="Codeturnal"
               title="Developed by Codeturnal"
               class="logo"
@@ -108,7 +109,7 @@
       <div class="container">
         <div class="hero-content">
           <div class="title-container">
-            <img src="/images/logo.png" alt="Khatm Logo" class="title-logo" />
+            <img src="../images/logo.png" alt="Khatm Logo" class="title-logo" />
             <h1>Khatm</h1>
           </div>
           <p>
@@ -135,12 +136,16 @@
                 </span>
               </div>
 
-              <!-- iOS: pending review -->
+              <!-- iOS: pending App Store review -->
               <div class="download-group">
-                <div class="cta-button disabled">
+                <a
+                  href="https://apps.apple.com/us/app/khatm-block-apps-with-quran/id6742319173"
+                  class="cta-button disabled"
+                  target="_blank"
+                >
                   <i class="fab fa-apple"></i>
                   Download on App Store
-                </div>
+                </a>
                 <span class="download-note">
                   Quran Foundation feature is still going through App Store review.
                 </span>
@@ -148,12 +153,16 @@
 
             </div>
 
-            <!-- Browser extension: auth broken -->
-            <div class="download-group">
-              <div class="cta-button disabled" style="width: max-content;">
+            <!-- Browser extension: auth not ready -->
+            <div class="browser-button download-group">
+              <a
+                href="https://chromewebstore.google.com/detail/khatm-block-web-with-qura/bbcpaefglamgfmlclagmojmcapidnpao?hl=en&authuser=0"
+                class="cta-button disabled"
+                target="_blank"
+              >
                 <i class="fab fa-chrome"></i>
                 Browser Extension
-              </div>
+              </a>
               <span class="download-note">
                 Not fully featured yet — Quran Foundation auth is still being fixed.
               </span>
@@ -163,8 +172,8 @@
 
         <div class="hero-image">
           <video autoplay loop muted playsinline>
-            <source src="/images/intro.MP4" type="video/mp4" />
-            <img src="/images/1.png" alt="App Screenshot" />
+            <source src="../images/intro.MP4" type="video/mp4" />
+            <img src="../images/1.png" alt="App Screenshot" />
           </video>
         </div>
       </div>
@@ -185,6 +194,6 @@
       </div>
     </footer>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
