@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.codeturnal.Khatm",
+      "sha256_cert_fingerprints": [
+        "96:12:C4:49:0D:CD:DB:AC:5F:84:A6:27:63:12:01:50:75:77:8C:E8:72:20:04:ED:EE:92:12:1B:46:04:27:A0"
+      ]
+    }
+  }
+]
