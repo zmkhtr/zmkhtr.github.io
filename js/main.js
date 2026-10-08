@@ -209,6 +209,78 @@ function startFeatureSlider() {
     if (event.key === 'ArrowRight') goTo(current + 1);
   });
 
+  // Auto advance, four seconds a screen.
+  // It holds still for a reader who asked for less motion, pauses while the
+  // pointer or keyboard is on the slider, waits for a hidden tab, and gives up
+  // control for good the moment the reader drives it themselves.
+  const EVERY = 4000;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null;
+  let held = false;
+  let handedOver = false;
+
+  function stopAuto() {
+    if (timer !== null) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startAuto() {
+    stopAuto();
+    if (handedOver || held || reduceMotion.matches) return;
+    // Only the last screen has nothing after it.
+    if (current === total - 1) return;
+
+    timer = setInterval(() => {
+      if (held || document.hidden) return;
+      if (current === total - 1) {
+        stopAuto();
+        return;
+      }
+      goTo(current + 1);
+    }, EVERY);
+  }
+
+  // A reader taking the wheel stops the ride.
+  function handOver() {
+    handedOver = true;
+    stopAuto();
+  }
+
+  function hold() {
+    held = true;
+    stopAuto();
+  }
+
+  function release() {
+    held = false;
+    startAuto();
+  }
+
+  slider.addEventListener('pointerenter', hold);
+  slider.addEventListener('pointerleave', release);
+  slider.addEventListener('focusin', hold);
+  slider.addEventListener('focusout', release);
+
+  // Any deliberate move restarts the four seconds from that screen.
+  const originalGoTo = goTo;
+  goTo = function (index) {
+    originalGoTo(index);
+    if (!handedOver) startAuto();
+  };
+
+  ['pointerdown', 'touchstart', 'keydown'].forEach((type) => {
+    slider.addEventListener(type, handOver, { once: true, passive: true });
+  });
+
+  reduceMotion.addEventListener('change', () => {
+    if (reduceMotion.matches) stopAuto();
+    else startAuto();
+  });
+
+  startAuto();
+
   // The label is centred next to its icon, so a plain left-align would not
   // line the caption up with it. Measure where the label actually starts and
   // inset the caption by the same amount per button.
