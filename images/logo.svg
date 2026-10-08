@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Khatm">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" baseProfile="tiny-ps" version="1.2" role="img">
   <title>Khatm</title>
 
-  <!-- Rounded square, the app icon shape -->
   <rect width="512" height="512" rx="100" ry="100" fill="url(#sand)"/>
 
   <defs>
-    <!-- Stops sampled from the sand in logo.png, at 20% steps -->
     <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#af987b"/>
       <stop offset="0.2" stop-color="#ab9477"/>
@@ -16,7 +14,6 @@
     </linearGradient>
   </defs>
 
-  <!-- The word Khatm, traced from the app icon -->
   <g fill="#ffffff" transform="translate(0 512) scale(0.1 -0.1)">
       <path d="M1789 3397 c-45 -30 -61 -63 -56 -115 11 -104 132 -145 205 -71 38
 39 46 79 26 129 -30 74 -110 101 -175 57z"/>
