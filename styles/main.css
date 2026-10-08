@@ -172,11 +172,60 @@ a {
 }
 
 /* Button Hooks */
+
+/* The two store buttons stack their label above a quiet caption line. Nothing
+   is boxed: it is just smaller, lighter text under the label. */
+.cta-button__group {
+  display: inline-flex;
+  flex-direction: column;
+  /* Stretch, not center: the caption needs the full width of the row so a left
+     inset can line it up with the label. js/main.js sets that inset. */
+  align-items: stretch;
+  gap: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-button__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  line-height: 1.2;
+}
+
+/* The two-line buttons buy back the height the caption adds, so they end up
+   the same size as the single-line Browser Extension button next to them. */
+.mobile-buttons .cta-button {
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.cta-button__label,
+.cta-button__note {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-button__note {
+  /* Lined up with the label's first letter rather than centred under it. */
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  /* 0.95 rather than 0.78: the lighter step measured 2.78:1 on the button fill,
+     which is under the 3:1 floor for text this size. */
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+}
+
 .cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
+  text-align: center;
   background: var(--primary);
   color: white !important;
   padding: 16px 32px;
@@ -225,9 +274,6 @@ a {
   transform: translateY(-4px);
 }
 
-.browser-button:hover .new-label {
-  margin-top: -4px;
-}
 
 .cta-button.highlight {
   box-shadow: 0 0 15px rgba(162, 132, 94, 0.4);
@@ -268,35 +314,7 @@ a {
   box-shadow: 0 0 25px rgba(162, 132, 94, 0.8);
 }
 
-.new-label {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: #ef4444;
-  color: white !important;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
-  animation: pulse 2s infinite;
-  z-index: 2;
-  transition: margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
 /* Hero Section */
 .hero {
@@ -375,11 +393,19 @@ a {
   gap: 20px;
 }
 
+/* .cta-buttons is a column flex container, so this row would otherwise stretch
+   to the full width and strand the badge on the left. */
 .mobile-buttons {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  align-self: flex-start;
 }
+
+.mobile-buttons .cta-button {
+  flex: 0 0 auto;
+}
+
 
 .hero-image {
   perspective: 1000px;
@@ -940,6 +966,248 @@ a {
   color: var(--primary);
 }
 
+/* Screen-reader-only text, used for the reel description */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Hero feature slider
+   Reads as: faded previous screen, current screen, faded next screen, then the
+   feature title, its description, and the controls. */
+.hero-image {
+  --slide-w: 236px;
+  --slide-gap: 34px;
+  --rail-shift: calc((var(--slide-w) + var(--slide-gap)) / 2);
+  justify-self: center;
+  width: 100%;
+}
+
+.feature-slider {
+  position: relative;
+  width: 100%;
+}
+
+/* Window. Overflow is visible so the neighbours are not clipped. */
+.feature-slider__track {
+  position: relative;
+  height: 534px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: grab;
+  /* Vertical swipes still scroll the page; horizontal ones drive the slider. */
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.feature-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--slide-w);
+  margin: 0;
+  /* Sitting just off centre keeps the three-plane read. */
+  transform: translate(calc(-50% - var(--rail-shift)), -50%) scale(0.74);
+  opacity: 0.42;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.45s ease;
+}
+
+.feature-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  -webkit-user-drag: none;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* The current screen is the focal point of the hero. */
+.feature-slide.is-current {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 3;
+}
+
+.feature-slide.is-current img {
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+  border: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Who sits on the other side is not a detail worth showing. */
+.feature-slide.is-left {
+  transform: translate(calc(-50% - var(--rail-shift)), -50%) scale(0.74);
+}
+
+.feature-slide.is-right {
+  transform: translate(calc(-50% + var(--rail-shift)), -50%) scale(0.74);
+}
+
+/* A slide two or more steps away is parked behind the current one. */
+.feature-slide.is-far {
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Copy under the window */
+.feature-slider__info {
+  margin-top: 4px;
+  text-align: center;
+  min-height: 96px;
+}
+
+.feature-slider__title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 9px;
+}
+
+.feature-slider__desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.65;
+  max-width: 370px;
+  margin: 0 auto;
+}
+
+/* Controls: arrow, small dots, arrow */
+.feature-slider__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.feature-slider__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.feature-slider__arrow:hover {
+  background: rgba(162, 132, 94, 0.25);
+  border-color: rgba(162, 132, 94, 0.6);
+  color: #fff;
+}
+
+.feature-slider__dots {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Small dots. Each keeps a 24px-wide tap area with clear space around it, which
+   is what WCAG 2.2 asks for when a control is this small. */
+.feature-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.feature-dot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.feature-dot:hover::before {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.feature-dot.is-current::before {
+  background: var(--primary-light);
+  transform: scale(1.4);
+}
+
+/* While a pointer is down, the rail follows the finger with no easing. */
+.feature-slider.is-dragging .feature-slide {
+  transition: none;
+}
+
+.feature-slider.is-dragging .feature-slider__track {
+  cursor: grabbing;
+}
+
+/* Movement between screens is instant for a reader who asked for less motion.
+   The slider still works; it just does not glide. */
+@media (prefers-reduced-motion: reduce) {
+  .feature-slide,
+  .feature-dot::before {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* Shorter window on phones so the hero does not grow past the fold. */
+@media (max-width: 768px) {
+  .hero-image {
+    --slide-w: 190px;
+    --slide-gap: 26px;
+  }
+
+  .feature-slider__track {
+    height: 430px;
+  }
+
+  .feature-slider__title {
+    font-size: 1.3rem;
+  }
+
+  .feature-slider__info {
+    min-height: 104px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image {
+    --slide-w: 168px;
+    --slide-gap: 22px;
+  }
+
+  .feature-slider__track {
+    height: 380px;
+  }
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -1080,6 +1348,8 @@ a {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* Full width on phones, so the buttons reach the 320px cap below. */
+    align-self: stretch;
   }
 
   .cta-button {

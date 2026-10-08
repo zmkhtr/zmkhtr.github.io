@@ -34,10 +34,10 @@
             <span class="nav-text-mobile-hide">Developed by</span>
             <img
               src="images/codeturnal-logo.jpg"
-              alt="Codeturnal"
+                alt="Codeturnal"
               title="Developed by Codeturnal"
               class="logo"
-            />
+              />
           </a>
         </nav>
       </div>
@@ -61,15 +61,25 @@
                 href="https://apps.apple.com/us/app/khatm-block-apps-with-quran/id6742319173"
                 class="cta-button"
               >
-                <i class="fab fa-apple"></i>
-                Download on App Store
+                <span class="cta-button__group">
+                  <span class="cta-button__row">
+                    <i class="fab fa-apple"></i>
+                    <span class="cta-button__label">Download on App Store</span>
+                  </span>
+                  <span class="cta-button__note">Thanks for 1K++ downloads</span>
+                </span>
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.codeturnal.Khatm"
                 class="cta-button"
               >
-                <i class="fab fa-google-play"></i>
-                Download on Playstore
+                <span class="cta-button__group">
+                  <span class="cta-button__row">
+                    <i class="fab fa-google-play"></i>
+                    <span class="cta-button__label">Download on Playstore</span>
+                  </span>
+                  <span class="cta-button__note">Thanks for 1K++ downloads</span>
+                </span>
               </a>
             </div>
             <div class="browser-button">
@@ -80,7 +90,6 @@
                 <i class="fab fa-chrome"></i>
                 Browser Extension
               </a>
-              <span class="new-label">New</span>
             </div>
           </div>
           <div class="social-update">
@@ -100,74 +109,174 @@
             </div>
           </div>
         </div>
+        <!-- Feature slider: previous screen, current screen, next screen -->
         <div class="hero-image">
-          <video autoplay loop muted playsinline>
-            <source src="images/intro.MP4" type="video/mp4" />
-            <img src="images/1.png" alt="App Screenshot" />
-          </video>
-        </div>
-      </div>
-    </section>
+          <div class="feature-slider" id="feature-slider">
+            <ul class="feature-slider__track">
+              <li
+                class="feature-slide is-current"
+                data-index="0"
+                data-title="Increase Quran time"
+                data-desc="Spend more time with the Quran by blocking distracting apps."
+                role="group"
+                aria-roledescription="slide"
+                aria-label="1 of 6: Increase Quran time"
+              >
+                <img
+                  src="images/screens/06-home.jpg"
+                  alt="Increase Quran time"
+                  width="1170"
+                  height="2532" loading="eager"
+                />
+              </li>
+              <li
+                class="feature-slide"
+                data-index="1"
+                data-title="Block apps"
+                data-desc="Choose distracting apps. Recite at least 1 ayah before accessing them."
+                role="group"
+                aria-roledescription="slide"
+                aria-label="2 of 6: Block apps"
+              >
+                <img
+                  src="images/screens/07-block-apps.jpg"
+                  alt="Block apps"
+                  width="1170"
+                  height="2532" loading="eager" aria-hidden="true"
+                />
+              </li>
+              <li
+                class="feature-slide"
+                data-index="2"
+                data-title="Recite to unlock"
+                data-desc="Recite the ayah aloud. AI recognizes your recitation and gives feedback."
+                role="group"
+                aria-roledescription="slide"
+                aria-label="3 of 6: Recite to unlock"
+              >
+                <img
+                  src="images/screens/03-recite-match.jpg"
+                  alt="Recite to unlock"
+                  width="1170"
+                  height="2532" loading="eager" aria-hidden="true"
+                />
+              </li>
+              <li
+                class="feature-slide"
+                data-index="3"
+                data-title="Retry misheard words"
+                data-desc="Words the AI misses are highlighted. Recite the ayah again to retry."
+                role="group"
+                aria-roledescription="slide"
+                aria-label="4 of 6: Retry misheard words"
+              >
+                <img
+                  src="images/screens/04-recite-retry.jpg"
+                  alt="Retry misheard words"
+                  width="1170"
+                  height="2532" loading="lazy" aria-hidden="true"
+                />
+              </li>
+              <li
+                class="feature-slide"
+                data-index="4"
+                data-title="More ayahs, more screentime"
+                data-desc="Set how many ayahs you need to recite before unlocking the app."
+                role="group"
+                aria-roledescription="slide"
+                aria-label="5 of 6: More ayahs, more screentime"
+              >
+                <img
+                  src="images/screens/01-reading-goal.jpg"
+                  alt="More ayahs, more screentime"
+                  width="1170"
+                  height="2532" loading="lazy" aria-hidden="true"
+                />
+              </li>
+              <li
+                class="feature-slide"
+                data-index="5"
+                data-title="Customize ayah display"
+                data-desc="Choose your Arabic font and size, and toggle transliteration or translation."
+                role="group"
+                aria-roledescription="slide"
+                aria-label="6 of 6: Customize ayah display"
+              >
+                <img
+                  src="images/screens/02-customize-ayah-display.jpg"
+                  alt="Customize ayah display"
+                  width="1170"
+                  height="2532" loading="lazy" aria-hidden="true"
+                />
+              </li>
+            </ul>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-      <div class="container">
-        <h2>Key Features</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-shield-alt"></i>
+            <div class="feature-slider__info" aria-live="polite">
+              <h3 class="feature-slider__title">Increase Quran time</h3>
+              <p class="feature-slider__desc">Spend more time with the Quran by blocking distracting apps.</p>
             </div>
-            <h3>App Blocking with Quran Verses</h3>
-            <p>
-              Blocks distracting apps and requires reading an Verse before
-              access, helping maintain focus while ensuring Quran reading
-              progress.
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-language"></i>
-            </div>
-            <h3>Multilingual Support</h3>
-            <p>
-              Supports English and Indonesian languages with translations and
-              transliterations, adapting to your device settings.
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-book-quran"></i>
-            </div>
-            <h3>Interactive Quran Reading</h3>
-            <p>
-              Features audio recitation, adjustable Arabic text settings, and
-              translation options for an enhanced reading experience.
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3>Progress Tracking</h3>
-            <p>
-              Tracks your Khatm progress, remembers your last read verse, and
-              allows temporary app unlocking with customizable durations.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Screenshots Section -->
-    <section class="screenshots" id="screenshots">
-      <div class="container">
-        <h2>App Screenshots</h2>
-        <div class="screenshot-grid">
-          <img src="images/1.png" alt="Verse Style" />
-          <img src="images/2.png" alt="Block Distracting Apps" />
-          <img src="images/3.png" alt="Quran App Blocker" />
-          <img src="images/4.png" alt="Al-Fatihah" />
+            <div class="feature-slider__nav">
+              <button type="button" class="feature-slider__arrow" data-step="-1">
+                <span aria-hidden="true">&#8249;</span>
+                <span class="sr-only">Previous feature</span>
+              </button>
+              <div class="feature-slider__dots" role="tablist" aria-label="Features">
+                <button
+                  type="button"
+                  class="feature-dot is-current"
+                  role="tab"
+                  aria-selected="true"
+                  aria-label="Increase Quran time"
+                  data-goto="0"
+                ></button>
+                <button
+                  type="button"
+                  class="feature-dot"
+                  role="tab"
+                  aria-selected="false"
+                  aria-label="Block apps"
+                  data-goto="1"
+                ></button>
+                <button
+                  type="button"
+                  class="feature-dot"
+                  role="tab"
+                  aria-selected="false"
+                  aria-label="Recite to unlock"
+                  data-goto="2"
+                ></button>
+                <button
+                  type="button"
+                  class="feature-dot"
+                  role="tab"
+                  aria-selected="false"
+                  aria-label="Retry misheard words"
+                  data-goto="3"
+                ></button>
+                <button
+                  type="button"
+                  class="feature-dot"
+                  role="tab"
+                  aria-selected="false"
+                  aria-label="More ayahs, more screentime"
+                  data-goto="4"
+                ></button>
+                <button
+                  type="button"
+                  class="feature-dot"
+                  role="tab"
+                  aria-selected="false"
+                  aria-label="Customize ayah display"
+                  data-goto="5"
+                ></button>
+              </div>
+              <button type="button" class="feature-slider__arrow" data-step="1">
+                <span aria-hidden="true">&#8250;</span>
+                <span class="sr-only">Next feature</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
