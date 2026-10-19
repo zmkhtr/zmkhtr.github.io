@@ -1,4 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+/* Outfit, self-hosted (latin subset, variable weight 300-800). Served from
+   this origin so the first visit skips two extra connections to Google Fonts. */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("../fonts/outfit-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
   --primary: #a2845e;
@@ -72,6 +83,17 @@ h6 {
 a {
   transition: var(--transition);
   text-decoration: none;
+}
+
+/* Inline SVG icons (Font Awesome Free, CC BY 4.0), sized like the icon font
+   they replace. */
+.icon {
+  display: inline-block;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+  overflow: visible;
+  flex-shrink: 0;
 }
 
 /* Header */
@@ -651,10 +673,14 @@ a {
   font-style: italic;
 }
 
-.testimonial-card h4 {
+.testimonial-card .testimonial-author {
   color: var(--text-muted);
   font-size: 1rem;
   font-weight: 600;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
 }
 
 /* Contact Section */
@@ -855,7 +881,7 @@ a {
   transform: rotate(5deg);
 }
 
-.support-card h3 {
+.support-card h2 {
   font-size: 1.8rem;
   margin-bottom: 16px;
 }
@@ -938,6 +964,8 @@ a {
   color: var(--text-muted);
   margin-bottom: 50px;
   font-weight: 500;
+  /* Full opacity: the muted grey at 0.9 falls under 4.5:1 on white. */
+  opacity: 1;
 }
 
 .privacy-policy h2 {
@@ -960,6 +988,13 @@ a {
 .privacy-policy ul {
   margin-bottom: 30px;
   padding-left: 24px;
+}
+
+/* Links inside running text are underlined so they do not rely on colour
+   alone to stand out from the paragraph. */
+.privacy-policy p a:not(.contact-email),
+.privacy-policy li a {
+  text-decoration: underline;
 }
 
 .privacy-policy li::marker {
@@ -1070,6 +1105,7 @@ a {
 .feature-slider__title {
   font-size: 1.45rem;
   font-weight: 700;
+  line-height: 1.2;
   color: #fff;
   letter-spacing: -0.01em;
   margin-bottom: 9px;
